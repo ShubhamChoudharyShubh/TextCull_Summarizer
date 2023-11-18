@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Summarizer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.0/lottie.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo"><a href="index.html">TextCull</a></div>
+        <div class="navbar-links">
+            <a href="index.html">Home</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <div class="dropdown">
+                <label id="summarization-tools" for="summarization-tools"></label>
+                <select id="summarization-tools" onchange="navigateToSection(this.value)">
+                    <option value="Tools.html">Summarization Tools</option>
+                    <option value="Text.html">Text</option>
+                    <option value="PDF.html">PDF</option>
+                    <option value="Video.html">Video</option>
+                    <option value="Blog.html">Blog</option>
+                </select>
+            </div>
+        </div>
+        <div id="mobile-toggle" class="icon">&#9776;</div>
+    </nav>
+
+<!-- PDF Summarizer -->
+<div class="container">
+    <div class="form">
+        <h1 class="h1-large">Upload a PDF file for summarization</h1>
+        <form id="summ_form" action="upload/" class="form" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="csrfmiddlewaretoken" value="8YgLzzaEzbnFyHEzyRdb2pZTFlNlAKak3Q5jMz0iIWeaeKYL3E4WufdBH7CzsiFq"/>
+            <div class="form-group">
+                <label for="pdf_file" style="color: black;">Choose a PDF file (Max 50MB): <span style="color: red">*</span></label>
+                <input class="form-control form-control-lg" type="file" name="pdf_file" id="pdf_file" accept=".pdf" required>
+            </div>
+            <div class="form-group">
+                <label for="range_size" style="color: black;">Choose the size of your summary:</label>
+                <input type="range" class="form-control-range form-control-lg" style="width: 100%" id="range_size" min="10" max="90" name="percent"/>
+                <p style="color: black; width: 100%">
+                    <span class="float-start">Short</span>
+                    <span class="float-end">Long</span>
+                </p>
+                <p style="color: black; text-align: center">
+                    Size: <span id="value_size">10%</span>
+                </p>
+            </div>
+            <div class="form-group" style="text-align: center">
+                <button id="btn_summarize" class="btn-solid-lg" type="button">Summarize</button>
+            </div>
+        </form>
+    </div>
+    <div id="summary-output">
+        <h2>Summary Output:</h2>
+        <p id="summary-text"></p>
+    </div>
+</div>
+
+
+    <!-- About Us -->
+    <div class="about-us-container" id="about">
+        <div class="about-us-text">
+            <h1>PDF Summarization <br> Made Easy</h1>
+            <h2>Extract Key Info from PDFs</h2>
+            <p> Upload your PDF documents to TextCull's PDF Summarizer. With a single click, you can generate a summary of important points from your PDF files. Say goodbye to reading entire PDFs.</p>
+        </div>
+        <div class="about-us-image">
+            <div class="animation-img" id="pdfSummarization"></div>
+        </div>
+    </div>
+
+    <!-- Summarization Tools Section -->
+    <section class="summaries-section">
+        <h1>Summarization Tools</h1>
+        <p>Choose a tool to summarize content:</p>
+        <div class="summaries-row">
+            <div class="summary-item">
+                <a href="Text.html" class="summary-link">
+                    <img src="img/1.png" alt="Text Summarizer">
+                    <p class="tool-title">Text Summarizer</p>
+                </a>
+            </div>
+            <div class="summary-item">
+                <a href="PDF.html" class="summary-link">
+                    <img src="img/2.png" alt="PDF Summarizer">
+                    <p class="tool-title">PDF Summarizer</p>
+                </a>
+            </div>
+            <div class="summary-item">
+                <a href="Video.html" class="summary-link">
+                    <img src="img/3.png" alt="Video Summarizer">
+                    <p class="tool-title">Video Summarizer</p>
+                </a>
+            </div>
+            <div class="summary-item">
+                <a href="Blog.html" class="summary-link">
+                    <img src="img/4.png" alt="Blog Summarizer">
+                    <p class="tool-title">Blog Summarizer</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <h1>Contact Us</h1>
+            <p>Feel free to reach out with any questions, feedback, or inquiries.</p>
+            <!-- Contact Form -->
+            <form id="contact-form" class="contact-form">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-left">
+            <a href="https://www.linkedin.com/in/shubham-choudhary-shubh/" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/ShubhamChoudharyShubh" class="social-icon"><i class="fab fa-github"></i></a>
+            <a href="https://www.instagram.com/shubhamchoudharyshubh/" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/shubham-choudhary-shubh/" class="social-icon"><i class="fab fa-facebook"></i></a>
+        </div>
+        <div class="footer-right">
+            <p class="f-para">Copyright &copy; 2023, TextCull.in all rights reserved</p>
+        </div>
+    </footer>
+    <script>
+               // JavaScript logic goes here
+       document.getElementById('btn_summarize').addEventListener('click', function () {
+        const pdfFile = document.getElementById('pdf_file').files[0];
+        const summarySize = document.getElementById('range_size').value;
+
+        // You can perform actions based on the uploaded PDF file and summary size here
+        // For example, you can send a request to summarize the PDF and display the result.
+
+        // For now, let's display a message with the selected size and the uploaded file's name.
+        const summaryMessage = `Summarize PDF: ${pdfFile.name} with size: ${summarySize}%`;
+        document.getElementById('value_size').textContent = `${summarySize}%`;
+
+        // Display the summary output container and text
+        const summaryOutput = document.getElementById('summary-output');
+        summaryOutput.style.display = 'block';
+        document.getElementById('summary-text').textContent = summaryMessage;
+    });
+
+// for upload limits
+document.getElementById('pdf_file').addEventListener('change', function () {
+    const maxFileSize = 50 * 1024 * 1024; // 50MB in bytes
+
+    if (this.files.length > 0) {
+        const fileSize = this.files[0].size;
+
+        if (fileSize > maxFileSize) {
+            alert('File size exceeds the limit of 50MB. Please choose a smaller file.');
+            this.value = ''; // Clear the file input
+        }
+    }
+});
+    </script>
+</body>
+</html>
